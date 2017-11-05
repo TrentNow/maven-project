@@ -5,7 +5,10 @@ pipeline{
   
       stage('Build'){
           steps{
+              sh 'echo $PATH'
+              sh 'echo $M2'
               sh 'mvn clean package'
+             
           }
 
           post{
