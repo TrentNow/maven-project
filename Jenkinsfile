@@ -1,10 +1,6 @@
 pipeline{
    
    agent any
-   
-   tool name: 'JAVA_HOME', type: 'jdk'
-   tool name: 'M3', type: 'maven'
-
    stages{
       stage('Initialize'){
          steps{
