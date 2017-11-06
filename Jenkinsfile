@@ -36,24 +36,6 @@ pipeline {
                }
                                            
            }
-          stage('Deploy to production'){
-               steps{
-                    timeout(time: 5, unit: 'DAYS' ){
-                         input message: 'Can this build be deployed to production?'
-                    }
-               build job: deploy-to-prod      
-              }
-          
-               post{
-                    success{
-
-                         echo 'Build being deployed'
-                    }
-                    failure{
-                         echo 'Build cant be deployed at this moment'
-                    
-                    }
-               }
-          }
+         
      }
 }
