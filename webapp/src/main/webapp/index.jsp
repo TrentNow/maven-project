@@ -1,1 +1,1 @@
-Hello, Pam!!! This is the new version of this software
+Hello, Pam!!! This is version 2 of this software
