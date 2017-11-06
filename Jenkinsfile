@@ -1,46 +1,41 @@
-pipeline{
+pipeline {
+   
+     
      agent any
-     
-     tools{
-maven 'M3'
-jdk 'JAVA_HOME'
-}
-     
-     
+     tools { 
+        maven 'M3'
+        jdk 'JAVA_HOME' 
+    }
      stages{
-          
-          stage ("initialize") {
-               steps {
-               sh '''
-                echo "PATH = ${PATH}"
-                echo "M3_HOME = ${M3_HOME}"
+          stage('Initialize'){
+               steps{
+                    sh '''
+                    echo "M3_HOME =${M3_HOME}"
+                    echo "PATH = ${PATH}"
                     '''
-                   }
-                 }
+               }
           
+          }
           stage('Build'){
-              steps{
-              sh 'mvn clean package'
-             }
-              post{
-                 success{
-                       echo 'Storing archive!!!'
-                       archiveArtifacts artifacts: '**/target/*.war'
-                 
-                 }
-              
-              }
+               steps{
+                    sh 'mvn clean package'
+               }
+               post{
+                    success{
+                         echo 'Archiving artifacts!!!'
+                         archiveArtifacts artifacts: '**/target/*.war'
+                    }
+               
+               }
           
-          
-          } 
-     
-     
-     
-     
-     
-     
-     
-     
+          }
+          stage('Deploy to staging'){
+               steps{
+                    build job: deploy-to-staging
+               
+               }
+                                           
+           }
+         
      }
-
 }
