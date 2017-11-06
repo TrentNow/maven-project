@@ -1,17 +1,17 @@
 pipeline{
    
    agent any
-   tools{
-      maven: 'M3'
-      jdk: 'JAVA_HOME'
-   }
+   
+   tool name: 'JAVA_HOME', type: 'jdk'
+   tool name: 'M3', type: 'maven'
+
    stages{
       stage('Initialize'){
          steps{
-            sh '''
-            echo "PATH = ${PATH}"
-            echo "M3_HOME = ${M3_HOME}"
-            '''
+           
+            sh 'echo \'M3_HOME\''
+            sh 'echo \'M3_HOME\''
+           
          }
       }
       stage('Build'){
