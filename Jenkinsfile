@@ -10,7 +10,7 @@ pipeline{
          steps{
            
             sh 'echo \'M3_HOME\''
-            sh 'echo \'M3_HOME\''
+            sh 'echo \'JAVA_HOME\''
            
          }
       }
