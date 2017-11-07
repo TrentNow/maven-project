@@ -6,8 +6,8 @@ pipeline{
       jdk 'JAVA_HOME'
    }
    parameters{
-      string(name: 'tomcatdev', defaultValue: '34.231.241.89', description: 'Staging server')
-      string(name: 'tomcatprod', defaultValue: '34.206.64.59', description: 'Production server')
+      string(name: 'tomcatdev', defaultValue: '34.205.50.2', description: 'Staging server')
+      string(name: 'tomcatprod', defaultValue: '34.238.28.142', description: 'Production server')
    }
    triggers{
       pollSCM('* * * * *')
@@ -36,12 +36,12 @@ pipeline{
          parallel{
             stage('Deploy to staging'){
                steps{
-                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcat-dev}:/home/ec2-user/tomcat/webapps"
+                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatdev}:/home/ec2-user/tomcat/webapps"
                }
             }
             stage('Deploy to production'){
                steps{
-                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcat-prod}:/home/ec2-user/tomcat/webapps"
+                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatprod}:/home/ec2-user/tomcat/webapps"
                }
             }
          }
