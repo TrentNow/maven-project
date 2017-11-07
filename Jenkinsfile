@@ -36,12 +36,12 @@ pipeline{
          parallel{
             stage('Deploy to staging'){
                steps{
-                  sh 'scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatdev}:/home/ec2-user/tomcat/webapps'
+                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatdev}:/home/ec2-user/tomcat/webapps"
                }
             }
             stage('Deploy to production'){
                steps{
-                  sh 'scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatprod}:/home/ec2-user/tomcat/webapps'
+                  sh "scp -i /home/ec2-user/Cloud_KP.pem **/target/*.war ec2-user@${params.tomcatprod}:/home/ec2-user/tomcat/webapps"
                }
             }
          }
